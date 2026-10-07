@@ -1,0 +1,281 @@
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  min-height: 420px;
+  overflow: hidden;
+}
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", "Noto Sans TC", sans-serif;
+  background: linear-gradient(#78c9ff 0%, #d9f5ff 62%, #8bd46b 62%, #55ad4d 100%);
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+#game {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 520px;
+  overflow: hidden;
+  cursor: crosshair;
+  touch-action: none;
+}
+
+/* 頂部 HUD 面板 */
+.hud {
+  position: absolute;
+  z-index: 20;
+  top: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.78);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+  backdrop-filter: blur(8px);
+  font-weight: 800;
+}
+
+.hud span {
+  white-space: nowrap;
+}
+
+#score {
+  color: #e65100;
+}
+
+#lives {
+  color: #d32f2f;
+  letter-spacing: 2px;
+}
+
+#time {
+  color: #1565c0;
+}
+
+/* 按鈕共用樣式 */
+button {
+  border: 0;
+  border-radius: 999px;
+  padding: 9px 15px;
+  font-size: 15px;
+  font-weight: 800;
+  cursor: pointer;
+  background: #ffb300;
+  color: #4a2b00;
+  box-shadow: 0 4px 0 #d88e00;
+  transition: transform 0.05s ease, box-shadow 0.05s ease;
+}
+
+button:active {
+  transform: translateY(2px);
+  box-shadow: 0 2px 0 #d88e00;
+}
+
+#billionBtn {
+  background: #ff5252;
+  color: white;
+  box-shadow: 0 4px 0 #c62828;
+}
+
+#billionBtn:active {
+  box-shadow: 0 2px 0 #c62828;
+}
+
+#autoBtn {
+  background: #66bb6a;
+  color: white;
+  box-shadow: 0 4px 0 #388e3c;
+}
+
+#autoBtn.off {
+  background: #9e9e9e;
+  box-shadow: 0 4px 0 #616161;
+}
+
+#autoBtn:active {
+  box-shadow: 0 2px 0 #388e3c;
+}
+
+/* 實體：水果與炸彈 */
+.item {
+  position: absolute;
+  z-index: 5;
+  width: 72px;
+  height: 72px;
+  display: grid;
+  place-items: center;
+  font-size: 56px;
+  line-height: 1;
+  filter: drop-shadow(0 7px 4px rgba(0, 0, 0, 0.2));
+  will-change: transform;
+}
+
+.bomb {
+  font-size: 52px;
+}
+
+/* 特效：切割爆裂 */
+.slice {
+  position: absolute;
+  z-index: 8;
+  pointer-events: none;
+  font-size: 38px;
+  animation: pop 0.45s ease-out forwards;
+}
+
+@keyframes pop {
+  0% {
+    opacity: 1;
+    transform: scale(0.7) translateY(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.35) translateY(-35px);
+  }
+}
+
+/* 特效：得分飄字 */
+.scorePop {
+  position: absolute;
+  z-index: 15;
+  pointer-events: none;
+  color: #fff;
+  font-weight: 1000;
+  font-size: 28px;
+  text-shadow: 0 3px 4px rgba(0, 0, 0, 0.35);
+  animation: floatUp 0.65s ease-out forwards;
+}
+
+@keyframes floatUp {
+  to {
+    opacity: 0;
+    transform: translateY(-55px) scale(1.2);
+  }
+}
+
+/* 特效：刀光拖曳 */
+.slash {
+  position: absolute;
+  z-index: 12;
+  pointer-events: none;
+  height: 5px;
+  transform-origin: left center;
+  background: linear-gradient(90deg, transparent, white, #fff9c4, transparent);
+  box-shadow: 0 0 10px white;
+  border-radius: 99px;
+}
+
+/* 遊戲開始與結束之模態視窗 */
+#overlay {
+  position: absolute;
+  z-index: 30;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: rgba(10, 35, 55, 0.25);
+}
+
+.card {
+  width: min(90vw, 430px);
+  text-align: center;
+  padding: 32px 26px;
+  border-radius: 28px;
+  background: rgba(255, 255, 255, 0.93);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.22);
+}
+
+h1 {
+  margin: 0 0 10px;
+  font-size: 42px;
+}
+
+.card p {
+  color: #555;
+  margin: 8px 0 22px;
+  line-height: 1.6;
+}
+
+#finalScore {
+  font-size: 25px;
+  font-weight: 900;
+  color: #e65100;
+  margin-bottom: 20px;
+}
+
+#startBtn {
+  font-size: 19px;
+  padding: 13px 28px;
+}
+
+/* 背景雲朵裝飾 */
+.cloud {
+  position: absolute;
+  z-index: 1;
+  width: 130px;
+  height: 40px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.7);
+  top: 16%;
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.cloud::before {
+  width: 65px;
+  height: 65px;
+  left: 22px;
+  top: -28px;
+}
+
+.cloud::after {
+  width: 50px;
+  height: 50px;
+  right: 18px;
+  top: -20px;
+}
+
+.c1 {
+  left: 8%;
+  transform: scale(0.8);
+}
+
+.c2 {
+  right: 8%;
+  top: 28%;
+  transform: scale(1.15);
+  opacity: 0.65;
+}
+
+/* 響應式移動端適配 */
+@media (max-width: 600px) {
+  .hud {
+    top: 10px;
+    gap: 7px;
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+  .item {
+    width: 62px;
+    height: 62px;
+    font-size: 48px;
+  }
+  h1 {
+    font-size: 34px;
+  }
+}
