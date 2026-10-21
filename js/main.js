@@ -1,4 +1,4 @@
-import { Game } from './game.js';
+import { Game } from './game.js?v=20261021-2';
 
 /**
  * 遊戲啟動入口模組 (Main Entry Point)
@@ -8,4 +8,5 @@ window.addEventListener('DOMContentLoaded', () => {
   const game = new Game('#game');
   // 掛載至全域以利除錯與測試
   window.__GAME__ = game;
+  game.reset();
 });
