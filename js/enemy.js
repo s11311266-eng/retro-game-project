@@ -1,5 +1,5 @@
-import { CONFIG } from './config.js?v=20261021-2';
-import { Player } from './player.js?v=20261021-2';
+import { CONFIG } from './config.js?v=20261021-4';
+import { Player } from './player.js?v=20261021-4';
 
 /**
  * 障礙物(炸彈)與目標(水果)實體類別 (Enemy / Target Entity)
