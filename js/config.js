@@ -1,54 +1,44 @@
-/**
- * ?Šæˆ²?¨å?è¨­å??‡å??¸æ¨¡çµ?(Game Configuration)
- * å®šç¾©?Šæˆ²?ºç?è¨­å??å¯¦é«”å°ºå¯¸ã€é€Ÿåº¦?ç‰©?†å??¸è??‚é?å¸¸æ•¸
- */
+/** Game configuration. Keep this file UTF-8 encoded. */
 export const CONFIG = {
-  // æ°´æ??‡é?ç¤™ç‰©æ¸…å–®
-  FRUITS: ['??', '??', '??', '??', '??', '??', '??', '??', '??'],
-  BOMB_EMOJI: '?’£',
-  BOMB_CHANCE: 0.12, // ?¸å??Ÿæ?æ©Ÿç? (12%)
-
-  // ?å?è¦å??¸å€?  INITIAL_LIVES: 3,           // ?å??Ÿå‘½??  INITIAL_TIME: 30,           // ?Šæˆ²ç¸½ç???(ç§?
-  BILLION_AMOUNT: 100000000,  // ?’° +1?„å½©?‹å?? å???
-  // ?©ç?å¸¸æ•¸
-  GRAVITY: 1100,              // ?å?? é€Ÿåº¦ (px/sÂ²)
-  WALL_BOUNCE: -0.7,          // å·¦å³?Šç??å?ä¿‚æ•¸
-  WALL_LEFT_BOUND: -90,       // è§¸ç™¼å·¦å?å½ˆä? x ?¾å€?  WALL_RIGHT_MARGIN: 40,      // è§¸ç™¼?³å?å½ˆä??¢å?å¤–å´å¯¬åº¦
-  BOTTOM_DESPAWN_OFFSET: 80,  // ?‰è½è¶…å‡º?¢å?åº•éƒ¨?¤å?è·é›¢
-
-  // ?Ÿæ??»ç??‡é€??è¨­å?
+  FRUITS: ['ðŸ‰', 'ðŸŽ', 'ðŸŠ', 'ðŸ‹', 'ðŸŒ', 'ðŸ‡', 'ðŸ“', 'ðŸ', 'ðŸ¥'],
+  BOMB_EMOJI: 'ðŸ’£',
+  BOMB_CHANCE: 0.12,
+  INITIAL_LIVES: 3,
+  INITIAL_TIME: 30,
+  BILLION_AMOUNT: 100000000,
+  GRAVITY: 1100,
+  WALL_BOUNCE: -0.7,
+  WALL_LEFT_BOUND: -90,
+  WALL_RIGHT_MARGIN: 40,
+  BOTTOM_DESPAWN_OFFSET: 80,
   SPAWN: {
-    BASE_INTERVAL: 0.72,      // ?ºç??Ÿæ??“é? (ç§?
-    MIN_INTERVAL: 0.30,       // ?€å°ç??é???(ç§?
-    DECAY_RATE: 0.008,        // ?¨å‰©é¤˜æ??“é?æ¸›ä?? é€Ÿä???    COMBO_CHANCE: 0.25,       // ????Ÿæ?æ©Ÿç? (25%)
-    COMBO_DELAY_MS: 120,      // ????Ÿæ?å»¶é² (æ¯«ç?)
-    SPAWN_X_MIN: 30,          // ?Ÿæ? x è»¸æ?å°é???    SPAWN_X_MAX_MARGIN: 90,   // ?Ÿæ? x è»¸æ?å¤§å??Šè?
-    SPAWN_Y_OFFSET: 20,       // ?Ÿæ??å? y è»¸èž¢å¹•ä??¹å?ç§?  },
-
-  // ?Ÿåº¦?‡æ?è½‰è??Ÿåº¦
+    BASE_INTERVAL: 0.72,
+    MIN_INTERVAL: 0.30,
+    DECAY_RATE: 0.008,
+    COMBO_CHANCE: 0.25,
+    COMBO_DELAY_MS: 120,
+    SPAWN_X_MIN: 30,
+    SPAWN_X_MAX_MARGIN: 90,
+    SPAWN_Y_OFFSET: 20
+  },
   VELOCITY: {
-    VX_SPREAD: 260,           // æ°´å¹³?Ÿåº¦?†ä?ç¯„å? [-130, 130]
-    VY_BASE: 650,             // ?‚ç›´?‘ä??é€Ÿåº¦?ºæ?
-    VY_SPREAD: 280,           // ?‚ç›´?‘ä??Ÿåº¦è®Šé? [650 ~ 930]
-    VR_SPREAD: 300,           // ?‹è?è§’é€Ÿåº¦ç¯„å?
+    VX_SPREAD: 260,
+    VY_BASE: 650,
+    VY_SPREAD: 280,
+    VR_SPREAD: 300
   },
-
-  // å¯¦é?å°ºå¯¸?‡ç¢°?žå?å¾?  SIZES: {
-    BOMB: 52,                 // ?¸å?å°ºå¯¸ (px)
-    FRUIT_BASE: 60,           // æ°´æ??ºç?å°ºå¯¸ (px)
-    FRUIT_SPREAD: 10,         // æ°´æ??¨æ?å°ºå¯¸æµ®å?
+  SIZES: {
+    BOMB: 52,
+    FRUIT_BASE: 60,
+    FRUIT_SPREAD: 10
   },
-  SLICE_HIT_RADIUS: 42,       // ?‡å‰²ç·šæ®µæª¢æ¸¬?Šå? (px)
-  ITEM_CENTER_OFFSET: 36,     // ?©ä»¶ä¸­å??ç§»??(px)
-
-  // ?•ç•«?‡ç‰¹?ˆç??½é€±æ? (æ¯«ç?)
+  SLICE_HIT_RADIUS: 42,
+  ITEM_CENTER_OFFSET: 36,
   TIMERS: {
-    AUTO_SLICE_DELAY: 45,     // ?ªå??‡å‰²å»¶é² (æ¯«ç?)
-    SLASH_DURATION: 100,      // ?€?‰è?è·¡ä??™æ???(æ¯«ç?)
-    POP_DURATION: 500,        // ?‡å‰²?†è??¹æ??‚é•· (æ¯«ç?)
-    SCORE_FLOAT_DURATION: 700 // å¾—å?é£„å??¹æ??‚é•· (æ¯«ç?)
+    AUTO_SLICE_DELAY: 650,
+    SLASH_DURATION: 100,
+    POP_DURATION: 500,
+    SCORE_FLOAT_DURATION: 700
   }
 };
-
-// ?¥å??¯å‡ºä»¥ä??ç›¸å®¹æ€?export const GAME_CONFIG = CONFIG;
-
+export const GAME_CONFIG = CONFIG;
