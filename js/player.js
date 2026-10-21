@@ -72,25 +72,27 @@ export class Player {
     }
     this.isSlicing = true;
     this.lastPointer = this.getPointerPos(e);
+    // A click or tap directly on fruit also counts as a slice.
+    this.onSliceCallback?.(this.lastPointer.x, this.lastPointer.y, this.lastPointer.x, this.lastPointer.y);
     e.preventDefault();
   }
 
   handlePointerMove(e) {
-    if (!this.enabled || !this.isSlicing) return;
-    const current = this.getPointerPos(e);
-
-    if (this.lastPointer) {
-      // 繪製刀光效果
-      this.createSlash(this.lastPointer.x, this.lastPointer.y, current.x, current.y);
-
-      // 觸發切割判定回調
-      if (this.onSliceCallback) {
-        this.onSliceCallback(this.lastPointer.x, this.lastPointer.y, current.x, current.y);
-      }
+    if (!this.enabled || (e.target && e.target.closest('button, .card, .hud'))) {
+      this.lastPointer = null;
+      return;
     }
-
+    // Mouse hover slices too; touch and pen use an active drag.
+    if (e.pointerType !== 'mouse' && !this.isSlicing) return;
+    const current = this.getPointerPos(e);
+    if (this.lastPointer) {
+      this.createSlash(this.lastPointer.x, this.lastPointer.y, current.x, current.y);
+      this.onSliceCallback?.(this.lastPointer.x, this.lastPointer.y, current.x, current.y);
+    } else {
+      this.onSliceCallback?.(current.x, current.y, current.x, current.y);
+    }
     this.lastPointer = current;
-    e.preventDefault();
+    if (this.isSlicing) e.preventDefault();
   }
 
   handlePointerUp() {
