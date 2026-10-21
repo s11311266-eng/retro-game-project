@@ -157,6 +157,7 @@ export class Game {
     // 清空現有實體與重置玩家狀態
     this.enemyManager.clear();
     this.player.reset();
+    this.player.setEnabled(true); // Allow manual slicing when auto-slice is off.
 
     // 重設數據
     this.score = 0;
@@ -184,6 +185,7 @@ export class Game {
    */
   endGame(reason = '時間到！') {
     this.running = false;
+    this.player.setEnabled(false);
     if (this.animationId) {
       cancelAnimationFrame(this.animationId);
       this.animationId = null;
@@ -253,6 +255,7 @@ export class Game {
   toggleAutoSlice() {
     this.autoSlice = !this.autoSlice;
     this.enemyManager.setAutoSlice(this.autoSlice);
+    this.player.setEnabled(this.running); // Manual slicing remains available in either mode.
 
     if (this.autoBtn) {
       this.autoBtn.textContent = this.autoSlice ? '🤖 自動切割：開' : '🤖 自動切割：關';
