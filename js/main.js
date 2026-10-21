@@ -1,4 +1,4 @@
-import { Game } from './game.js?v=20261021-3';
+import { Game } from './game.js?v=20261021-4';
 
 /**
  * 遊戲啟動入口模組 (Main Entry Point)
