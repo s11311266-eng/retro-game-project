@@ -1,4 +1,4 @@
-import { CONFIG } from './config.js?v=20261021-2';
+import { CONFIG } from './config.js?v=20261021-4';
 
 /**
  * 玩家控制與狀態管理類別 (Player Controller)
