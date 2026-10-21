@@ -1,6 +1,6 @@
-import { CONFIG } from './config.js?v=20261021-2';
-import { Player } from './player.js?v=20261021-2';
-import { EnemyManager } from './enemy.js?v=20261021-2';
+import { CONFIG } from './config.js?v=20261021-4';
+import { Player } from './player.js?v=20261021-4';
+import { EnemyManager } from './enemy.js?v=20261021-4';
 
 /**
  * 遊戲主控制器與狀態管理 (Game Coordinator)
